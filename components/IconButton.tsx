@@ -1,11 +1,11 @@
 import React from "react";
 import { Pressable, Text, StyleSheet } from "react-native";
-import MaterialIcons from "@react-native-vector-icons/material-icons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type IconButtonProps = {
 	icon: any;
 	label: string;
-	onPress: () => {};
+	onPress: () => void;
 };
 
 const IconButton: React.FC<IconButtonProps> = ({ icon, label, onPress }) => {
@@ -20,7 +20,7 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, label, onPress }) => {
 const styles = StyleSheet.create({
 	iconButton: {
 		justifyContent: "center",
-		alignContent: "center",
+		alignItems: "center",
 	},
 	iconButtonLabel: {
 		color: "#fff",

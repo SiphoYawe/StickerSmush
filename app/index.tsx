@@ -3,12 +3,30 @@ import { useState } from "react";
 import ImageViewer from "@/components/ImageViewer";
 import Button from "@/components/Button";
 import * as ImagePicker from "expo-image-picker";
+import CircleButton from "@/components/CircleButton";
+import IconButton from "@/components/IconButton";
+import EmojiPicker from "@/components/EmojiPicker";
 
 const imagePlaceHolder = require("../assets/images/background-image.png");
 
-export default function HomePaage() {
+export default function HomePage() {
 	const [selecetedImage, setSelecetedImage] = useState<string | null>(null);
 	const [showAppOptions, setshowAppOptions] = useState<boolean>(false);
+	const [isModalVisible, setisModalVisible] = useState<boolean>(false);
+
+	const onReset = () => {
+		setshowAppOptions(false);
+	};
+
+	const onAddSticker = () => {
+		setisModalVisible(true);
+	};
+
+	const onModalClose = () => {
+		setisModalVisible(false);
+	};
+
+	const onSaveImageAsync = async () => {};
 
 	const pickImageAsync = async () => {
 		let result = await ImagePicker.launchImageLibraryAsync({
@@ -32,7 +50,17 @@ export default function HomePaage() {
 				/>
 			</View>
 			{showAppOptions ? (
-				<View />
+				<View style={styles.optionsContainer}>
+					<View style={styles.optionsRow}>
+						<IconButton icon="refresh" label="Reset" onPress={onReset} />
+						<CircleButton onPress={onAddSticker} />
+						<IconButton
+							icon="save-alt"
+							label="Save"
+							onPress={onSaveImageAsync}
+						/>
+					</View>
+				</View>
 			) : (
 				<View style={styles.footerContainer}>
 					<Button
@@ -48,6 +76,9 @@ export default function HomePaage() {
 					/>
 				</View>
 			)}
+			<EmojiPicker
+				isVisible={isModalVisible}
+				onClose={onModalClose}></EmojiPicker>
 		</View>
 	);
 }
@@ -65,5 +96,13 @@ const styles = StyleSheet.create({
 	footerContainer: {
 		flex: 1 / 3,
 		alignItems: "center",
+	},
+	optionsRow: {
+		alignItems: "center",
+		flexDirection: "row",
+	},
+	optionsContainer: {
+		position: "absolute",
+		bottom: 80,
 	},
 });
