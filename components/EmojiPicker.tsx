@@ -19,7 +19,7 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>Choose a sticker</Text>
 					<Pressable onPress={onClose}>
-						<MaterialIcons name="close" color="#fff" size={12} />
+						<MaterialIcons name="close" color="#fff" size={18} />
 					</Pressable>
 				</View>
 				{children}
@@ -30,7 +30,7 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
 
 const styles = StyleSheet.create({
 	modalContent: {
-		height: "25%",
+		height: "35%",
 		width: "100%",
 		backgroundColor: "#25292e",
 		borderTopRightRadius: 18,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 		bottom: 0,
 	},
 	titleContainer: {
-		height: "16%",
+		height: "20%",
 		backgroundColor: "#464C55",
 		borderTopRightRadius: 10,
 		borderTopLeftRadius: 10,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		color: "#fff",
-		fontSize: 16,
+		fontSize: 18,
 	},
 	pickerContainer: {
 		flexDirection: "row",
