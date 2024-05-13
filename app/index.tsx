@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageViewer from "@/components/ImageViewer";
 import Button from "@/components/Button";
 import * as ImagePicker from "expo-image-picker";
@@ -15,7 +15,9 @@ export default function HomePage() {
 	const [selecetedImage, setSelecetedImage] = useState<string | null>(null);
 	const [showAppOptions, setshowAppOptions] = useState<boolean>(false);
 	const [isModalVisible, setisModalVisible] = useState<boolean>(false);
-	const [pickedEmoji, setpickedEmoji] = useState(null);
+	const [pickedEmoji, setPickedEmoji] = useState(null);
+
+	console.log(pickedEmoji);
 
 	const onReset = () => {
 		setshowAppOptions(false);
@@ -52,6 +54,9 @@ export default function HomePage() {
 					placeholderImageSource={imagePlaceHolder}
 					selectedImage={selecetedImage}
 				/>
+				{pickedEmoji && (
+					<EmojiSticker imageSize={40} stickerSource={pickedEmoji} />
+				)}
 			</View>
 			{showAppOptions ? (
 				<View style={styles.optionsContainer}>
@@ -81,7 +86,7 @@ export default function HomePage() {
 				</View>
 			)}
 			<EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
-				<EmojiList onSelect={setpickedEmoji} onCloseModal={onModalClose} />
+				<EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
 			</EmojiPicker>
 		</View>
 	);

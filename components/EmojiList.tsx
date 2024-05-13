@@ -19,7 +19,7 @@ const EmojiList: React.FC<EmojiListProps> = ({ onSelect, onCloseModal }) => {
 	return (
 		<FlatList
 			horizontal
-			showsHorizontalScrollIndicator={Platform.OS == "web"}
+			showsHorizontalScrollIndicator={Platform.OS === "web"}
 			data={emoji}
 			contentContainerStyle={styles.listContainer}
 			renderItem={({ item, index }) => (
